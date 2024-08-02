@@ -11721,7 +11721,7 @@ MenuKempston:
 
 MenuSinclair:
 	POP  HL
-	LD   HL,$B4F7
+	LD   HL,SinclairKeys	;$B4F7
 	JR   SetJoy
 
 ; xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -11731,7 +11731,7 @@ MenuSinclair:
 
 MenuCursor:
 	POP  HL
-	LD   HL,$B4ED
+	LD   HL,CursorKeys		;$B4ED
 
 ; xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ;
@@ -11739,7 +11739,7 @@ MenuCursor:
 ;
 
 SetJoy:
-	LD   DE,$A31F
+	LD   DE,KeyTab
 	LD   BC,$000A
 	LDIR
 	RET 
@@ -12322,6 +12322,8 @@ RedefinedKeys:
 	db $FE 
 	db $BF 
 	db $FE 
+	
+CursorKeys	
 	db $EF 
 	db $FE 
 	db $EF 
@@ -12332,6 +12334,8 @@ RedefinedKeys:
 	db $EF 
 	db $EF 
 	db $FB 
+	
+SinclairKeys	
 	db $EF 
 	db $FE 
 	db $EF 
