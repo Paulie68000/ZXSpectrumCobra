@@ -40,7 +40,7 @@ Each 16 pixel high row of the screen can contain a maximum of two Tile Block tri
 So, how does all this work?  So, the entire map draw is done with a combination of unrolled PUSH instructions; each register pair represents a tile.  HL holds the blank/parallax tile, BC, DE and AF hold the three tiles of the tile block.
 
 At the start of the frame the game scans the game map and generates the sequence of PUSH instructions need for the 14 tiles of each row, as the code is being generated the game can switch to using a second Tileblock which POPs in
-three new adresses into BC, DE and AF for a seond Tileblcok.  Each of the 8 rows of the screen has code generated for the push sequences required.
+three new adresses into BC, DE and AF for a seond Tileblock.  Each of the 8 rows of the screen has code generated for the push sequences required.
 
 The map draw consists of simply executing this generated code.  When we want to shift over two pixels all we need to do is update the offset to the next pre-shifted triple of blocks and execute the same code again.  It's worth noting that
 Cobra draw directly to screen memory and uses no back buffers.  It draws the map to the screen, followed by the sprites which is timed via "the floating bus trick" to ensure that we're racing the beam and drawing everything buffer the
