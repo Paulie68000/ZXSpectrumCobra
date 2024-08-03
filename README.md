@@ -18,6 +18,10 @@ special attention, due to some proper oblique thinking!
 
 Enjoy!
 
+**Update 03/08/24** - I've included the Cobra files for the Spectrum Analyser tool that I used to RE the game.  With this you'll be able to step through the documented code to see how things work "as it happens" - maybe use the LUA interface to add a map editor!  The world is your oyster.
+
+Download Spectrum Analyser from https://github.com/TheGoodDoktor/8BitAnalysers 
+
 ## **1. The Scroller**
 
 Probably the cleverest part of Cobra is the horizontal scroll routine.  Cobra can scroll a 224 x 144 pixel window left and right, 2 pixels at a time along with the corresponding 28 x 16 attributes in around half a frame.
