@@ -1,0 +1,35 @@
+{
+    "128KGame": false,
+    "Machine": "",
+    "Name": "Cobra (1986)(Ocean Software)",
+    "Options": {
+        "ViewConfigs": [
+            {
+                "Enabled": true,
+                "ViewAddress": 46317,
+                "ViewAddressBank": 3
+            },
+            {
+                "Enabled": false,
+                "ViewAddress": 0,
+                "ViewAddressBank": -1
+            },
+            {
+                "Enabled": false,
+                "ViewAddress": 0,
+                "ViewAddressBank": -1
+            },
+            {
+                "Enabled": false,
+                "ViewAddress": 0,
+                "ViewAddressBank": -1
+            }
+        ]
+    },
+    "Snapshot": {
+        "DisplayName": "Cobra (1986)(Ocean Software)",
+        "FileName": "Cobra (1986)(Ocean Software).z80",
+        "ListName": "Snapshot File",
+        "Type": 0
+    }
+}
