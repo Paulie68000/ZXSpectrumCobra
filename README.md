@@ -18,6 +18,10 @@ special attention, due to some proper oblique thinking!
 
 Enjoy!
 
+**Update 03/08/24** - I've included the Cobra files for the Spectrum Analyser tool that I used to RE the game.  With this you'll be able to step through the documented code to see how things work "as it happens" - maybe use the LUA interface to add a map editor!  The world is your oyster.
+
+Download Spectrum Analyser from https://github.com/TheGoodDoktor/8BitAnalysers 
+
 ## **1. The Scroller**
 
 Probably the cleverest part of Cobra is the horizontal scroll routine.  Cobra can scroll a 224 x 144 pixel window left and right, 2 pixels at a time along with the corresponding 28 x 16 attributes in around half a frame.
@@ -39,11 +43,11 @@ Each 16 pixel high row of the screen can contain a maximum of two Tile Block tri
 
 So, how does all this work?  So, the entire map draw is done with a combination of unrolled PUSH instructions; each register pair represents a tile.  HL holds the blank/parallax tile, BC, DE and AF hold the three tiles of the tile block.
 
-At the start of the frame the game scans the game map and generates the sequence of PUSH instructions need for the 14 tiles of each row, as the code is being generated the game can switch to using a second Tileblock which POPs in
-three new adresses into BC, DE and AF for a seond Tileblock.  Each of the 8 rows of the screen has code generated for the push sequences required.
+At the start of the frame the game scans the game map and generates the sequence of PUSH instructions needed for the 14 tiles of each row, as the code is being generated the game can switch to using a second Tileblock which POPs in
+three new adresses into BC, DE and AF for a seond Tileblock.  Each of the 8 rows of the screen has code generated for the PUSH sequences required.
 
 The map draw consists of simply executing this generated code.  When we want to shift over two pixels all we need to do is update the offset to the next pre-shifted triple of blocks and execute the same code again.  It's worth noting that
-Cobra draw directly to screen memory and uses no back buffers.  It draws the map to the screen, followed by the sprites which is timed via "the floating bus trick" to ensure that we're racing the beam and drawing everything buffer the
+Cobra draws directly to screen memory and uses no back buffers.  It draws the map to the screen, followed by the sprites which is timed via "the floating bus trick" to ensure that we're racing the beam and drawing everything before the
 raster scan catches up with us.
 
 As the player scrolls the map, the map code is generated every time the map scroll position modulo 8 == 0, as for the next four scrolls of two pixels, the scroll is simply executing the same code with the block offset changed.
