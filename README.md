@@ -13,7 +13,7 @@ you see all through his numerous games.
 After a few weeks of evenings, I present fully documented source code, named pretty much how he named his functions back in the day, as an ASM file that can be assembled by SJAsmPlus back into a
 working snapshot file.
 
-The code is heavily documented, but I'll add some more notes here on some of thinking behind the scrolling technique, the sprite plotting and the multiplexed "Plip Plop" audio player as they deserve
+The code is heavily documented, but I'll add some more notes here on some of the thinking behind the scrolling technique, the sprite plotting and the multiplexed "Plip Plop" audio player as they deserve
 special attention, due to some proper oblique thinking!
 
 Enjoy!
@@ -35,7 +35,7 @@ Each level has a "byte per tile" map that is 256 x 8 bytes. Each byte in the map
 The main currency of the scroller is a TileBlock which consists of three 16 x 16 tiles that scan be scrolled into each other.  These tile blocks are pre shifted four times at the start of the level.
 
 Each Level has a total of 9 tile blocks.  The first tile block is used for the parallax ground scroll and fully wraps around itself.  The following 8 TileBlocks are built of three 16x16 Tiles; the first tile is the left edge
-of the triple block the second is a middle block that can be repeated to make a long run of a platform and final an end block of the triple that scrolls blank data in.
+of the triple block, the second is a middle block that can be repeated to make a long run of a platform, and finally an end block of the triple that scrolls blank data in.
 
 Each 16 pixel high row of the screen can contain a maximum of two Tile Block triples plus a blank / parallax block giving us a maximum of 7 16 x 16 Tiles per 16 pixel row. 
 
@@ -47,7 +47,7 @@ At the start of the frame the game scans the game map and generates the sequence
 three new adresses into BC, DE and AF for a seond Tileblock.  Each of the 8 rows of the screen has code generated for the PUSH sequences required.
 
 The map draw consists of simply executing this generated code.  When we want to shift over two pixels all we need to do is update the offset to the next pre-shifted triple of blocks and execute the same code again.  It's worth noting that
-Cobra draws directly to screen memory and uses no back buffers.  It draws the map to the screen, followed by the sprites which is timed via "the floating bus trick" to ensure that we're racing the beam and drawing everything before the
+Cobra draws directly to screen memory and uses no back buffers.  It draws the map to the screen, followed by the sprites, which is timed via "the floating bus trick" to ensure that we're racing the beam and drawing everything before the
 raster scan catches up with us.
 
 As the player scrolls the map, the map code is generated every time the map scroll position modulo 8 == 0, as for the next four scrolls of two pixels, the scroll is simply executing the same code with the block offset changed.
