@@ -204,7 +204,7 @@ FIN:		equ 	$ff
 
 INTJUMP		EQU 	$FFF5
 
-SYSBorder 	equ 	0x5C48			; Used by ROM beeper!
+SYSBorder 	equ 	0x5C48				; Used by ROM beeper!
 ROM_BEEPER	equ		0x03b5
 
 SCRNADDR:	equ		0x4000				; screen
@@ -2004,7 +2004,7 @@ Charset:
 
 ; xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ;
-; PAGE $00 
+; PAGE $80 
 ;
 	org $8000	
 
@@ -2229,7 +2229,7 @@ Map_Round1:
 
 	org $8800
 	
-data_8800:				; PAGE $08
+data_8800:				; PAGE $88
 
 	JP   PlayGame
 	
@@ -2514,227 +2514,18 @@ InitialNumBaddiesToKill:
 ;
 ; PushMapEven - (generated) code to draw the pre-shifted map tiles.
 ;
-	org $8900		; PAGE $09
+	org $8900		; PAGE $89
 
 PushMapEven:
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH BC
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	JP   NextScanLine
-	
-	PUSH AF
-	PUSH AF 
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF 
-	PUSH AF 
-	PUSH AF
-	PUSH AF
-	PUSH AF 
-	PUSH AF
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH BC
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	JP   NextScanLine
-	
-	PUSH AF
-	PUSH AF 
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF 
-	PUSH AF 
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF 
-label_893C:
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH BC
-	JP   NextScanLine
-	
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF 
-	PUSH AF
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH BC
-	JP   NextScanLine
-	
-	LD   SP,IX
-	POP  BC
-	POP  DE
-	POP  AF
-	LD   SP,(SP_StoreMap)
-	PUSH AF
-	JP   NextScanLine
-	
-label_8978:
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH DE
-	PUSH BC
-	PUSH HL
-	JP   NextScanLine
-	
-	LD   SP,IX
-	POP  BC
-	POP  DE
-	POP  AF
-	LD   SP,(SP_StoreMap)
-	PUSH AF
-	JP   NextScanLine
-	
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	PUSH AF
-	PUSH BC
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH DE
-	PUSH BC
-	PUSH AF
-	JP   NextScanLine
-	
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF 
-	PUSH AF 
-label_89B4:
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH BC
-	PUSH HL
-	JP   NextScanLine
-	
-	POP  BC
-	db $D1 
-	db $F1 
-	db $ED 
-	LD   A,E
-	RET  P
-	ADC  A,E
-	PUSH AF
-	PUSH DE
-	PUSH BC
-	JP   NextScanLine
-	
-label_89D2:
-	PUSH DE
-	PUSH BC
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	LD   (SP_StoreMap),SP
-	LD   SP,IX
-	POP  BC
-	POP  DE
-	POP  AF
-	LD   SP,(SP_StoreMap)
-	PUSH AF
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH BC
-	JP   NextScanLine
-	
+
+	ds 240,0
+
+; xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;
+; Tileset2Code - This code is copied into the generated even/odd code when we want to switch
+;				 to a second tileset on a horizontal row. 
+;
+
 Tileset2Code:
 	LD   (SP_StoreMap),SP
 	LD   SP,IX
@@ -2903,233 +2694,11 @@ LRToDir:
 	org $8b00
 	
 PushMapOdd:
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH BC
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	JP   NextScanLine
-	
-	PUSH AF
-	db $F5 
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	db $F5 
-	db $F5 
-	db $F5 
-	PUSH AF
-	PUSH AF
-	db $F5 
-	db $F5 
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH BC
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	JP   NextScanLine
-	
-	PUSH AF
-	db $F5 
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	db $F5 
-	db $F5 
-	db $F5 
-	PUSH AF
-	PUSH AF
-	db $F5 
-	db $F5 
-label_8B3C:
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH BC
-	JP   NextScanLine
-	
-	PUSH AF
-	db $F5 
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	db $F5 
-	db $F5 
-	db $F5 
-	PUSH AF
-	PUSH AF
-	db $F5 
-	db $F5 
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH BC
-	JP   NextScanLine
-	
-	LD   SP,IX
-	POP  BC
-	POP  DE
-	POP  AF
-	db $ED 
-	db $7B 
-	db $F0 
-	ADC  A,E
-	PUSH AF
-	JP   NextScanLine
-	
-label_8B78:
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH DE
-	PUSH BC
-	PUSH HL
-	JP   NextScanLine
-	
-	LD   SP,HL
-	POP  BC
-	POP  DE
-	POP  AF
-	LD   SP,(SP_StoreMap)
-	PUSH AF
-	PUSH AF
-	JP   NextScanLine
-	
-label_8B96:
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	PUSH AF
-	PUSH BC
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH DE
-	PUSH BC
-	PUSH AF
-	JP   NextScanLine
-	
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	PUSH AF
-	db $F5 
-	db $F5 
-label_8BB4:
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH BC
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH BC
-	PUSH HL
-	JP   NextScanLine
-	
-	ADC  A,E
-	PUSH AF
-	PUSH BC
-	PUSH HL
-	PUSH HL
-	PUSH AF
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	JP   NextScanLine
-	
-label_8BD2:
-	PUSH DE
-	PUSH BC
-	PUSH HL
-	PUSH HL
-	PUSH HL
-	LD   (SP_StoreMap),SP
-	LD   SP,IX
-	POP  BC
-	POP  DE
-	POP  AF
-	LD   SP,(SP_StoreMap)
-	PUSH AF
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH DE
-	PUSH BC
-	JP   NextScanLine
+
+	ds 240,0
 
 SP_StoreMap:
 	dw	$4FF5 
-
-; xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 WorkingScrollTable:
 	dw $8A60 
@@ -3353,40 +2922,6 @@ ExplosionOffsets:
 GirlfriendSpriteAddress:
 	dw $0000
 	
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-	db $00 
-
 ; xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ;
 ; PAGE $0D
@@ -8774,6 +8309,11 @@ NextAttr:
 	JR   NZ,NextAttr
 	RET 
 
+; xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;
+;
+;
+
 ScrollAttrLeftToRight:
 	LD   HL,LeftEdgeAttrs				;$A841
 	EXX 
@@ -8821,6 +8361,11 @@ LRLoop:
 	JP   PE,LRLoop
 	LD   SP,(SPStr)
 	RET 
+
+; xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;
+;
+;
 
 ScrollAttrRightToLeft:
 	LD   HL,RightEdgeAttrs			;$A831
